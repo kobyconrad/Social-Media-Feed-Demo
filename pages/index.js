@@ -15,13 +15,33 @@ export default () => {
     });
   }
 
+  function onFormChange() {
+    setSharedState(prevDoc => {
+      prevDoc.formSubmit = sharedState.formState;
+    });
+  }
+
+  function handleChange(event) {
+    setSharedState(prevDoc => {
+      prevDoc.formState = event.target.value;
+    });
+  }
+
   return (
     <div>
       <h1>Open multiple browser windows!</h1>
 
       <p>{sharedState.number || 0}</p>
+      <p>{sharedState.formSubmit || ""}</p>
 
       <button onClick={onClick}>Pick Random Number</button>
+      <form>
+        <label>
+          Name:
+          <input type="text" name="name" onChange={handleChange} />
+        </label>
+        <input type="submit" value="Submit" onClick={onFormChange} />
+      </form>
     </div>
   );
 };
