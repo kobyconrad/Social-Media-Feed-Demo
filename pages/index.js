@@ -1,6 +1,6 @@
 import RoomService from "@roomservice/browser";
 import { useSharedState } from "@roomservice/react";
-import React from "react";
+import React, { useState } from "react";
 
 const client = new RoomService({
   authUrl: "http://localhost:3000/api/roomservice"
@@ -8,6 +8,7 @@ const client = new RoomService({
 
 export default () => {
   const [sharedState, setSharedState] = useSharedState(client, "my-room");
+  const [state, setState] = useState("");
 
   function onClick() {
     setSharedState(prevDoc => {
@@ -17,14 +18,15 @@ export default () => {
 
   function onFormChange() {
     setSharedState(prevDoc => {
-      prevDoc.formSubmit = sharedState.formState;
+      prevDoc.formSubmit = state;
     });
   }
 
   function handleChange(event) {
-    setSharedState(prevDoc => {
-      prevDoc.formState = event.target.value;
-    });
+    // setSharedState(prevDoc => {
+    //   prevDoc.formState = event.target.value;
+    // });
+    setState(event.target.value);
   }
 
   return (
