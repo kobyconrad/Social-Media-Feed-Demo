@@ -25,3 +25,10 @@ export default () => {
     </div>
   );
 };
+
+// How do I create a social media feed...
+// Text Input
+// Save to a component library
+// sort by position
+// let users increase or decrease position
+// step #1: save text input to my state
