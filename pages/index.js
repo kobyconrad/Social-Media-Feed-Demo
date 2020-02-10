@@ -1,6 +1,7 @@
 import RoomService from "@roomservice/browser";
 import { useSharedState } from "@roomservice/react";
 import React, { useState } from "react";
+import Tweet from "../components/card";
 
 const client = new RoomService({
   authUrl: "http://localhost:3000/api/roomservice"
@@ -24,10 +25,15 @@ export default () => {
     <div className="appContainer">
       <div className="columnContainer">
         <div className="appTitle">
-          <h1>Tw1tt3r BLACK</h1>
+          <h1>tw1tt3r BLACK</h1>
         </div>
         <div className="inputContainer">
-          <textarea type="text" name="name" onChange={handleChange}></textarea>
+          <textarea
+            placeholder="Tweet your truth.."
+            type="text"
+            name="name"
+            onChange={handleChange}
+          ></textarea>
           <input
             className="submitButton"
             type="submit"
@@ -36,7 +42,8 @@ export default () => {
           />
         </div>
         <div className="feedContainer">
-          <p>{sharedState.formSubmit || ""}</p>
+          {/* <p>{sharedState.formSubmit || ""}</p> */}
+          <Tweet />
         </div>
       </div>
 
@@ -52,8 +59,15 @@ export default () => {
           background-color: #0d0d0d;
           color: #f4f4f4;
         }
+        .feedContainer {
+          color: #f4f4f4;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+        }
         .columnContainer {
-          min-width: 450px;
+          width: 450px;
           min-height: 100vh;
           display: flex;
           align-items: center;
@@ -76,15 +90,15 @@ export default () => {
           outline: none;
           font-size: 15px;
           font-weight: 900;
-          margin-top: 30px;
+          margin-top: 50px;
           margin-left: 10px;
-          margin-right: 10px;
+          margin-right: 20px;
         }
         .inputContainer {
           display: flex;
           align-items: center;
           padding-bottom: 10px;
-          border-bottom: 5px solid #8c8c8c;
+          border-bottom: 4px solid #8c8c8c;
           width: 100%;
         }
         .appTitle {
