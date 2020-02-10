@@ -24,14 +24,14 @@ export default () => {
     <div className="appContainer">
       <div className="columnContainer">
         <div className="appTitle">
-          <h1>Social Media Feed Demo</h1>
+          <h1>Tw1tt3r BLACK</h1>
         </div>
         <div className="inputContainer">
           <textarea type="text" name="name" onChange={handleChange}></textarea>
           <input
             className="submitButton"
             type="submit"
-            value="Submit"
+            value="Tweet"
             onClick={onFormChange}
           />
         </div>
@@ -42,31 +42,63 @@ export default () => {
 
       <style jsx>{`
         textarea {
-          width: 300px;
-          height: 50px;
-          padding: 10px;
+          width: 100%;
+          height: 100px;
+          padding: 10px 20px 10px 20px;
           border: 0px;
-          font-family: Arial;
-          font-size: 16px;
+          font-size: 18px;
           outline: none;
           resize: none;
+          background-color: #0d0d0d;
+          color: #f4f4f4;
         }
-        ,
-        columnContainer {
-          min-width: 400px;
+        .columnContainer {
+          min-width: 450px;
+          min-height: 100vh;
           display: flex;
+          align-items: center;
           flex-direction: column;
+          border-left: 1px solid #8c8c8c;
+          border-right: 1px solid #8c8c8c;
         }
-        ,
-        appContainer {
+        .appContainer {
           display: flex;
           align-items: center;
           justify-content: center;
-          min-width: 400px;
         }
-        ,
-        submitButton {
+        .submitButton {
           width: 100px;
+          height: 35px;
+          background-color: #1ca1f2;
+          border: none;
+          border-radius: 17px;
+          color: #f4f4f4;
+          outline: none;
+          font-size: 15px;
+          font-weight: 900;
+          margin-top: 30px;
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+        .inputContainer {
+          display: flex;
+          align-items: center;
+          padding-bottom: 10px;
+          border-bottom: 5px solid #8c8c8c;
+          width: 100%;
+        }
+        .appTitle {
+          color: #f4f4f4;
+        }
+      `}</style>
+      <style jsx global>{`
+        html,
+        body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          background-color: #0d0d0d;
+          font-family: Arial;
         }
       `}</style>
     </div>
