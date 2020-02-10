@@ -10,12 +10,6 @@ export default () => {
   const [sharedState, setSharedState] = useSharedState(client, "my-room");
   const [state, setState] = useState("");
 
-  function onClick() {
-    setSharedState(prevDoc => {
-      prevDoc.number = Math.floor(Math.random() * 100);
-    });
-  }
-
   function onFormChange() {
     setSharedState(prevDoc => {
       prevDoc.formSubmit = state;
@@ -23,27 +17,58 @@ export default () => {
   }
 
   function handleChange(event) {
-    // setSharedState(prevDoc => {
-    //   prevDoc.formState = event.target.value;
-    // });
     setState(event.target.value);
   }
 
   return (
-    <div>
-      <h1>Open multiple browser windows!</h1>
+    <div className="appContainer">
+      <div className="columnContainer">
+        <div className="appTitle">
+          <h1>Social Media Feed Demo</h1>
+        </div>
+        <div className="inputContainer">
+          <textarea type="text" name="name" onChange={handleChange}></textarea>
+          <input
+            className="submitButton"
+            type="submit"
+            value="Submit"
+            onClick={onFormChange}
+          />
+        </div>
+        <div className="feedContainer">
+          <p>{sharedState.formSubmit || ""}</p>
+        </div>
+      </div>
 
-      <p>{sharedState.number || 0}</p>
-      <p>{sharedState.formSubmit || ""}</p>
-
-      <button onClick={onClick}>Pick Random Number</button>
-      <form>
-        <label>
-          Name:
-          <input type="text" name="name" onChange={handleChange} />
-        </label>
-        <input type="submit" value="Submit" onClick={onFormChange} />
-      </form>
+      <style jsx>{`
+        textarea {
+          width: 300px;
+          height: 50px;
+          padding: 10px;
+          border: 0px;
+          font-family: Arial;
+          font-size: 16px;
+          outline: none;
+          resize: none;
+        }
+        ,
+        columnContainer {
+          min-width: 400px;
+          display: flex;
+          flex-direction: column;
+        }
+        ,
+        appContainer {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 400px;
+        }
+        ,
+        submitButton {
+          width: 100px;
+        }
+      `}</style>
     </div>
   );
 };
