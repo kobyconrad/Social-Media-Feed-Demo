@@ -7,19 +7,36 @@ const client = new RoomService({
   authUrl: "http://localhost:3000/api/roomservice"
 });
 
+// 1. I need to set sharedState.cards === []
+// 2. When I press "tweet" fn onFormChange pushes a new object into that array
+// 3. I to map components, to the "text" field within the objects, of my array saved in RS state
+
 export default () => {
-  const [sharedState, setSharedState] = useSharedState(client, "my-room");
+  const [sharedState, setSharedState] = useSharedState(
+    client,
+    "tw1tt3r-BLACK",
+    {
+      cardsArray: []
+    }
+  );
   const [state, setState] = useState("");
 
   function onFormChange() {
     setSharedState(prevDoc => {
-      prevDoc.formSubmit = state;
+      if (!prevDoc.cardsArray2) {
+        prevDoc.cardsArray2 = [];
+      }
+      prevDoc.cardsArray2.push({ text: state });
     });
   }
 
   function handleChange(event) {
     setState(event.target.value);
   }
+
+  const mappedTweets = (sharedState.cardsArray2 || []).map(function(item) {
+    return <Tweet tweetText={item.text} />;
+  });
 
   return (
     <div className="appContainer">
@@ -41,10 +58,7 @@ export default () => {
             onClick={onFormChange}
           />
         </div>
-        <div className="feedContainer">
-          {/* <p>{sharedState.formSubmit || ""}</p> */}
-          <Tweet />
-        </div>
+        <div className="feedContainer">{mappedTweets}</div>
       </div>
 
       <style jsx>{`
@@ -64,7 +78,7 @@ export default () => {
           width: 100%;
           display: flex;
           align-items: center;
-          flex-direction: column;
+          flex-direction: column-reverse;
         }
         .columnContainer {
           width: 450px;

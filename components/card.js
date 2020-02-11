@@ -1,6 +1,6 @@
 import React from "react";
 
-function Tweet() {
+function Tweet(props) {
   return (
     <div className="cardContainer">
       <div className="cardLeftBar">
@@ -8,10 +8,7 @@ function Tweet() {
       </div>
       <div className="cardTextContainer">
         <div className="cardAnonymousText">@Anonymous</div>
-        <div className="cardTextPropsContainer">
-          I wonder how this is going to look with a longer string, you know what
-          i'm saying?
-        </div>
+        <div className="cardTextPropsContainer">{props.tweetText}</div>
       </div>
 
       <style jsx>{`
@@ -39,6 +36,7 @@ function Tweet() {
         }
         .cardTextPropsContainer {
           display: flex;
+          flex-direction: column-reverse;
           margin-top: 10px;
           margin-bottom: 10px;
         }
