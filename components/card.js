@@ -5,14 +5,12 @@ function Tweet(props) {
   return (
     <div className="cardContainer">
       <div className="cardLeftBar">
-        <div className="arrowContainer" onClick={props.onClick}>
-          <ArrowUp size={30} />
-        </div>
+        <ArrowUp onClick={props.onClick} size={30} />
 
         <div className="upvoteCount">{props.upvoteCount}</div>
       </div>
       <div className="cardTextContainer">
-        <div className="cardAnonymousText">@Anonymous</div>
+        <div className="cardAnonymousText">@anonymous</div>
         <div className="cardTextPropsContainer">{props.tweetText}</div>
       </div>
 

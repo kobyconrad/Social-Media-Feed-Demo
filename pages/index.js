@@ -36,7 +36,14 @@ export default () => {
 
   function handleUpvote(index) {
     setSharedState(prevDoc => {
-      prevDoc.cardsArray2[index].upvotecount++;
+      prevDoc.cardsArray2[index].upvoteCount =
+        prevDoc.cardsArray2[index].upvoteCount + 1;
+    });
+  }
+
+  function deleteAllTweets() {
+    setSharedState(prevDoc => {
+      prevDoc.cardsArray2 = [];
     });
   }
 
@@ -48,7 +55,9 @@ export default () => {
       <Tweet
         tweetText={item.text}
         upvoteCount={item.upvoteCount || 0}
-        onClick={console.log(`hello ${index}`)}
+        onClick={function() {
+          handleUpvote(index);
+        }}
       />
     );
   });
@@ -57,6 +66,7 @@ export default () => {
     <div className="appContainer">
       <div className="navBar">
         <img className="siteLogo" src={"https://i.imgur.com/ZLEVCQ3.png"} />
+        {/* <button onClick={deleteAllTweets}>Delete Tweets</button> */}
       </div>
       <div className="columnContainer">
         <div className="appTitle">
@@ -64,7 +74,7 @@ export default () => {
         </div>
         <div className="inputContainer">
           <textarea
-            placeholder="Anonymously tweet secrets.."
+            placeholder="A social media to anonymously share secrets.."
             type="text"
             name="name"
             onChange={handleChange}
