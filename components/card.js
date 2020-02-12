@@ -5,8 +5,11 @@ function Tweet(props) {
   return (
     <div className="cardContainer">
       <div className="cardLeftBar">
-        <ArrowUp size={35} />
-        {/* <img className="cardLogo" src={"https://i.imgur.com/XoPNt7U.png"} /> */}
+        <div className="arrowContainer" onClick={props.onClick}>
+          <ArrowUp size={30} />
+        </div>
+
+        <div className="upvoteCount">{props.upvoteCount}</div>
       </div>
       <div className="cardTextContainer">
         <div className="cardAnonymousText">@Anonymous</div>
@@ -27,7 +30,15 @@ function Tweet(props) {
         .cardLeftBar {
           width: 80px;
           display: flex;
+          flex-direction: column;
           justify-content: center;
+          align-items: center;
+        }
+        .upvoteCount {
+          margin-top: 3px;
+        }
+        .arrowContainer {
+          
         }
         .cardTextContainer {
           width: 100%;

@@ -26,7 +26,7 @@ export default () => {
       if (!prevDoc.cardsArray2) {
         prevDoc.cardsArray2 = [];
       }
-      prevDoc.cardsArray2.push({ text: state });
+      prevDoc.cardsArray2.push({ text: state, upvoteCount: 0 });
     });
   }
 
@@ -34,14 +34,29 @@ export default () => {
     setState(event.target.value);
   }
 
-  const mappedTweets = (sharedState.cardsArray2 || []).map(function(item) {
-    return <Tweet tweetText={item.text} />;
+  function handleUpvote(index) {
+    setSharedState(prevDoc => {
+      prevDoc.cardsArray2[index].upvotecount++;
+    });
+  }
+
+  const mappedTweets = (sharedState.cardsArray2 || []).map(function(
+    item,
+    index
+  ) {
+    return (
+      <Tweet
+        tweetText={item.text}
+        upvoteCount={item.upvoteCount || 0}
+        onClick={console.log(`hello ${index}`)}
+      />
+    );
   });
 
   return (
     <div className="appContainer">
       <div className="navBar">
-        <img className="siteLogo" src={"https://i.imgur.com/XoPNt7U.png"} />
+        <img className="siteLogo" src={"https://i.imgur.com/ZLEVCQ3.png"} />
       </div>
       <div className="columnContainer">
         <div className="appTitle">
@@ -71,8 +86,8 @@ export default () => {
           margin: 20px;
         }
         .siteLogo {
-          width: 40px;
-          height: 35px;
+          width: 50px;
+          height: 50px;
         }
         textarea {
           width: 100%;
@@ -148,10 +163,3 @@ export default () => {
     </div>
   );
 };
-
-// How do I create a social media feed...
-// Text Input
-// Save to a component library
-// sort by position
-// let users increase or decrease position
-// step #1: save text input to my state
