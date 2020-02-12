@@ -40,13 +40,16 @@ export default () => {
 
   return (
     <div className="appContainer">
+      <div className="navBar">
+        <img className="siteLogo" src={"https://i.imgur.com/XoPNt7U.png"} />
+      </div>
       <div className="columnContainer">
         <div className="appTitle">
-          <h1>tw1tt3r BLACK</h1>
+          <h1 className="logo">tw1tt3r BLACK</h1>
         </div>
         <div className="inputContainer">
           <textarea
-            placeholder="Tweet your truth.."
+            placeholder="Anonymously tweet secrets.."
             type="text"
             name="name"
             onChange={handleChange}
@@ -62,6 +65,15 @@ export default () => {
       </div>
 
       <style jsx>{`
+        .navBar {
+          color: #f4f4f4;
+          display: flex;
+          margin: 20px;
+        }
+        .siteLogo {
+          width: 40px;
+          height: 35px;
+        }
         textarea {
           width: 100%;
           height: 100px;
@@ -76,6 +88,7 @@ export default () => {
         .feedContainer {
           color: #f4f4f4;
           width: 100%;
+          font-size: 18px;
           display: flex;
           align-items: center;
           flex-direction: column-reverse;
@@ -89,9 +102,12 @@ export default () => {
           border-left: 1px solid #8c8c8c;
           border-right: 1px solid #8c8c8c;
         }
+        .logo {
+          font-weight: 900;
+        }
         .appContainer {
           display: flex;
-          align-items: center;
+
           justify-content: center;
         }
         .submitButton {

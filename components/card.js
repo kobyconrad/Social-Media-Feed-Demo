@@ -1,10 +1,12 @@
 import React from "react";
+import { ArrowUp } from "react-feather";
 
 function Tweet(props) {
   return (
     <div className="cardContainer">
       <div className="cardLeftBar">
-        <img className="cardLogo" src={"https://i.imgur.com/XoPNt7U.png"} />
+        <ArrowUp size={35} />
+        {/* <img className="cardLogo" src={"https://i.imgur.com/XoPNt7U.png"} /> */}
       </div>
       <div className="cardTextContainer">
         <div className="cardAnonymousText">@Anonymous</div>
@@ -41,7 +43,7 @@ function Tweet(props) {
           margin-bottom: 10px;
         }
         .cardLogo {
-          width: 35px;
+          width: 40px;
           height: 35px;
         }
       `}</style>
