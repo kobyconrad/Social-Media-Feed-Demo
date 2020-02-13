@@ -5,7 +5,7 @@ import Tweet from "../components/card";
 import LoadMore from "../components/loadMore";
 
 const client = new RoomService({
-  authUrl: "http://tw1tt3rblack.com/api/roomservice"
+  authUrl: "https://tw1tt3rblack.com/api/roomservice"
 });
 
 // 1. I need to set sharedState.cards === []
