@@ -1,13 +1,13 @@
 import React from "react";
-import { ArrowUp } from "react-feather";
+import { ArrowUp, ArrowDown } from "react-feather";
 
 function Tweet(props) {
   return (
     <div className="cardContainer">
       <div className="cardLeftBar">
-        <ArrowUp onClick={props.onClick} size={30} />
-
+        <ArrowUp onClick={props.onClick} size={25} />
         <div className="upvoteCount">{props.upvoteCount}</div>
+        <ArrowDown onClick={props.onClickDown} size={25} />
       </div>
       <div className="cardTextContainer">
         <div className="cardAnonymousText">@anonymous</div>
@@ -34,6 +34,7 @@ function Tweet(props) {
         }
         .upvoteCount {
           margin-top: 3px;
+          margin-bottom: 3px;
         }
         .arrowContainer {
           

@@ -2,6 +2,7 @@ import RoomService from "@roomservice/browser";
 import { useSharedState } from "@roomservice/react";
 import React, { useState } from "react";
 import Tweet from "../components/card";
+import LoadMore from "../components/loadMore";
 
 const client = new RoomService({
   authUrl: "http://localhost:3000/api/roomservice"
@@ -20,6 +21,9 @@ export default () => {
     }
   );
   const [state, setState] = useState("");
+  const [loadTweets, setLoadTweets] = useState(
+    (sharedState.cardsArray2 || []).length - 10
+  );
 
   function onFormChange() {
     setSharedState(prevDoc => {
@@ -41,40 +45,53 @@ export default () => {
     });
   }
 
+  function handleDownvote(index) {
+    setSharedState(prevDoc => {
+      prevDoc.cardsArray2[index].upvoteCount =
+        prevDoc.cardsArray2[index].upvoteCount - 1;
+    });
+  }
+
   function deleteAllTweets() {
     setSharedState(prevDoc => {
       prevDoc.cardsArray2 = [];
     });
   }
 
-  const mappedTweets = (sharedState.cardsArray2 || []).map(function(
-    item,
-    index
-  ) {
-    return (
-      <Tweet
-        tweetText={item.text}
-        upvoteCount={item.upvoteCount || 0}
-        onClick={function() {
-          handleUpvote(index);
-        }}
-      />
-    );
-  });
+  function loadMoreTweets() {
+    setLoadTweets(loadTweets - 10);
+  }
+
+  const mappedTweets = (sharedState.cardsArray2 || [])
+    .slice(loadTweets, (sharedState.cardsArray2 || []).length)
+    .map(function(item, index) {
+      return (
+        <Tweet
+          tweetText={item.text}
+          upvoteCount={item.upvoteCount || 0}
+          onClick={function() {
+            handleUpvote(index);
+          }}
+          onClickDown={function() {
+            handleDownvote(index);
+          }}
+        />
+      );
+    });
 
   return (
     <div className="appContainer">
       <div className="navBar">
         <img className="siteLogo" src={"https://i.imgur.com/ZLEVCQ3.png"} />
-        {/* <button onClick={deleteAllTweets}>Delete Tweets</button> */}
       </div>
       <div className="columnContainer">
         <div className="appTitle">
           <h1 className="logo">tw1tt3r BLACK</h1>
+          <button onClick={deleteAllTweets}>Delete Tweets</button>
         </div>
         <div className="inputContainer">
           <textarea
-            placeholder="A social media to anonymously share secrets.."
+            placeholder="Give a man a mask, and he will tweet the truth.."
             type="text"
             name="name"
             onChange={handleChange}
@@ -87,6 +104,7 @@ export default () => {
           />
         </div>
         <div className="feedContainer">{mappedTweets}</div>
+        <LoadMore onClick={loadMoreTweets} />
       </div>
 
       <style jsx>{`
