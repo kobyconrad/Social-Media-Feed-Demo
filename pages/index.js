@@ -70,7 +70,7 @@ export default () => {
   ) {
     return (
       <Tweet
-        tweetText={item.text + `${index}`}
+        tweetText={item.text}
         upvoteCount={item.upvoteCount || 0}
         onClick={function() {
           handleUpvote(index);
