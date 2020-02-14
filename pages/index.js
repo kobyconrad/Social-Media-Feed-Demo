@@ -95,6 +95,10 @@ export default () => {
       </div>
       <div className="columnContainer">
         <div className="appTitle">
+          <img
+            className="siteLogoMobile"
+            src={"https://i.imgur.com/ZLEVCQ3.png"}
+          />
           <h1 className="logo">tw1tt3r BLACK</h1>
           {/* <button onClick={deleteAllTweets}>Delete Tweets</button> */}
         </div>
@@ -117,6 +121,24 @@ export default () => {
       </div>
 
       <style jsx>{`
+        @media screen and (max-width: 500px) {
+          .siteLogo {
+            display: none;
+          }
+          .navBar {
+            margin 0px !important;
+          }
+          .siteLogoMobile {
+            margin-right: 15px;
+            width: 45px;
+            height: 45px;
+          }
+        }
+        @media screen and (min-width: 501px) {
+          .siteLogoMobile {
+            display: none;
+          }
+        }
         .navBar {
           color: #f4f4f4;
           display: flex;
@@ -190,6 +212,9 @@ export default () => {
         }
         .appTitle {
           color: #f4f4f4;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       `}</style>
       <style jsx global>{`
