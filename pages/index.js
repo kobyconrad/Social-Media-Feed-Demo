@@ -62,22 +62,30 @@ export default () => {
     setLoadTweets(loadTweets - 10);
   }
 
-  const mappedTweets = (sharedState.cardsArray2 || [])
-    .slice(loadTweets, (sharedState.cardsArray2 || []).length)
-    .map(function(item, index) {
-      return (
-        <Tweet
-          tweetText={item.text}
-          upvoteCount={item.upvoteCount || 0}
-          onClick={function() {
-            handleUpvote(index);
-          }}
-          onClickDown={function() {
-            handleDownvote(index);
-          }}
-        />
-      );
-    });
+  // here it sets an index for a sliced array, but our function
+  // calls the index on the TOTAL array
+  const mappedTweets = (sharedState.cardsArray2 || []).map(function(
+    item,
+    index
+  ) {
+    return (
+      <Tweet
+        tweetText={item.text + `${index}`}
+        upvoteCount={item.upvoteCount || 0}
+        onClick={function() {
+          handleUpvote(index);
+        }}
+        onClickDown={function() {
+          handleDownvote(index);
+        }}
+      />
+    );
+  });
+
+  const slicedTweets = mappedTweets.slice(
+    loadTweets,
+    (sharedState.cardsArray2 || []).length
+  );
 
   return (
     <div className="appContainer">
@@ -87,7 +95,7 @@ export default () => {
       <div className="columnContainer">
         <div className="appTitle">
           <h1 className="logo">tw1tt3r BLACK</h1>
-          {/* <button onClick={deleteAllTweets}>Delete Tweets</button> */}
+          <button onClick={deleteAllTweets}>Delete Tweets</button>
         </div>
         <div className="inputContainer">
           <textarea
@@ -103,7 +111,7 @@ export default () => {
             onClick={onFormChange}
           />
         </div>
-        <div className="feedContainer">{mappedTweets}</div>
+        <div className="feedContainer">{slicedTweets}</div>
         <LoadMore onClick={loadMoreTweets} />
       </div>
 
