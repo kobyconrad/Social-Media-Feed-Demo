@@ -26,13 +26,15 @@ export default () => {
   );
 
   function onFormChange() {
-    setSharedState(prevDoc => {
-      if (!prevDoc.cardsArray2) {
-        prevDoc.cardsArray2 = [];
-      }
-      prevDoc.cardsArray2.push({ text: state, upvoteCount: 0 });
-    });
-    setState("");
+    if (state !== "") {
+      setSharedState(prevDoc => {
+        if (!prevDoc.cardsArray2) {
+          prevDoc.cardsArray2 = [];
+        }
+        prevDoc.cardsArray2.push({ text: state, upvoteCount: 0 });
+      });
+      setState("");
+    }
   }
 
   function handleChange(event) {
