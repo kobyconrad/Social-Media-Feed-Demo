@@ -1,13 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { ArrowUp, ArrowDown } from "react-feather";
 
 function Tweet(props) {
+  const [up, setUp] = useState("white");
+  const [down, setDown] = useState("white");
+
   return (
     <div className="cardContainer">
       <div className="cardLeftBar">
-        <ArrowUp onClick={props.onClick} size={25} />
+        <ArrowUp
+          className="voteArrows"
+          color={up}
+          onClick={props.onClick}
+          size={25}
+          onMouseOver={function() {
+            setUp("#1ca1f2");
+          }}
+          onMouseOut={function() {
+            setUp("white");
+          }}
+        />
         <div className="upvoteCount">{props.upvoteCount}</div>
-        <ArrowDown onClick={props.onClickDown} size={25} />
+        <ArrowDown
+          onClick={props.onClickDown}
+          size={25}
+          color={down}
+          onMouseOver={function() {
+            setDown("#1ca1f2");
+          }}
+          onMouseOut={function() {
+            setDown("white");
+          }}
+        />
       </div>
       <div className="cardTextContainer">
         <div className="cardAnonymousText">@anonymous</div>
@@ -20,10 +44,15 @@ function Tweet(props) {
           min-height: 80px;
           display: flex;
           justify-content: center;
-          padding-top: 10px;
-          padding-bottom: 10px;
-          margin-top 10px;
+          padding-top: 15px;
+          padding-bottom: 15px;
           border-bottom: 1px solid #8c8c8c;
+          cursor: pointer;
+          user-select: none;
+        }
+        .cardContainer:hover {
+          background-color: #1a1818;
+          transition: 0.2s;
         }
         .cardLeftBar {
           width: 80px;
@@ -36,8 +65,13 @@ function Tweet(props) {
           margin-top: 3px;
           margin-bottom: 3px;
         }
+        ArrowDown {
+          fill: #1ca1f2;
+        }
+        .voteArrows {
+          color: #1ca1f2;
+        }
         .arrowContainer {
-          
         }
         .cardTextContainer {
           width: 100%;

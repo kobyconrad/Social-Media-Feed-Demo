@@ -156,6 +156,7 @@ export default () => {
         }
         .logo {
           font-weight: 900;
+          user-select: none;
         }
         .appContainer {
           display: flex;
@@ -175,6 +176,10 @@ export default () => {
           margin-top: 50px;
           margin-left: 10px;
           margin-right: 20px;
+        }
+        .submitButton:hover {
+          background-color: #4390d4;
+          cursor: pointer;
         }
         .inputContainer {
           display: flex;
