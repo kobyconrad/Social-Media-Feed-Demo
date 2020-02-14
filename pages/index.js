@@ -3,6 +3,7 @@ import { useSharedState } from "@roomservice/react";
 import React, { useState } from "react";
 import Tweet from "../components/card";
 import LoadMore from "../components/loadMore";
+import FeedSelector from "../components/feedSelector";
 
 const client = new RoomService({
   authUrl: "https://tw1tt3rblack.com/api/roomservice"
@@ -21,20 +22,36 @@ export default () => {
     }
   );
   const [state, setState] = useState("");
+  const [feed, setFeed] = useState("new");
   const [loadTweets, setLoadTweets] = useState(
     (sharedState.cardsArray2 || []).length - 10
   );
 
   function onFormChange() {
     if (state !== "") {
+      // setSharedState(prevDoc => {
+      //   prevDoc.total = prevDoc.total + 1 || 0;
+      // });
       setSharedState(prevDoc => {
         if (!prevDoc.cardsArray2) {
           prevDoc.cardsArray2 = [];
         }
-        prevDoc.cardsArray2.push({ text: state, upvoteCount: 0 });
+        prevDoc.cardsArray2.push({
+          text: state,
+          upvoteCount: 0,
+          time: prevDoc.cardsArray2.length
+        });
       });
       setState("");
     }
+  }
+
+  function onTopClick() {
+    setFeed("top");
+  }
+
+  function onNewClick() {
+    setFeed("new");
   }
 
   function handleChange(event) {
@@ -65,12 +82,18 @@ export default () => {
     setLoadTweets(loadTweets - 10);
   }
 
+  const feedSortArr = (sharedState.cardsArray2 || []).sort(function(a, b) {
+    if (feed === "top") {
+      return a.upvoteCount - b.upvoteCount;
+    } else if (feed === "new") {
+      return a.time - b.time;
+    }
+  });
+
   // here it sets an index for a sliced array, but our function
   // calls the index on the TOTAL array
-  const mappedTweets = (sharedState.cardsArray2 || []).map(function(
-    item,
-    index
-  ) {
+  //const mappedTweets = (sharedState.cardsArray2 || []).map(function(
+  const mappedTweets = feedSortArr.map(function(item, index) {
     return (
       <Tweet
         tweetText={item.text}
@@ -102,7 +125,7 @@ export default () => {
             src={"https://i.imgur.com/ZLEVCQ3.png"}
           />
           <h1 className="logo">tw1tt3r BLACK</h1>
-          {/* <button onClick={deleteAllTweets}>Delete Tweets</button> */}
+          <button onClick={deleteAllTweets}>Delete Tweets</button>
         </div>
         <div className="inputContainer">
           <textarea
@@ -120,6 +143,7 @@ export default () => {
             <p className="tweetText">Tweet</p>
           </div>
         </div>
+        <FeedSelector onTopClick={onTopClick} onNewClick={onNewClick} />
         <div className="feedContainer">{slicedTweets}</div>
         <LoadMore onClick={loadMoreTweets} />
       </div>
@@ -154,7 +178,7 @@ export default () => {
         }
         textarea {
           width: 100%;
-          height: 100px;
+          height: 130px;
           padding: 10px 20px 10px 20px;
           border: 0px;
           font-size: 18px;
@@ -202,7 +226,7 @@ export default () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-top: 70px;
+          margin-top: 100px;
           margin-left: 10px;
           margin-right: 20px;
         }
