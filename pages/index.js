@@ -109,12 +109,14 @@ export default () => {
             value={state}
             onChange={handleChange}
           ></textarea>
-          <input
+          <div
             className="submitButton"
             type="submit"
             value="Tweet"
             onClick={onFormChange}
-          />
+          >
+            <p className="tweetText">Tweet</p>
+          </div>
         </div>
         <div className="feedContainer">{slicedTweets}</div>
         <LoadMore onClick={loadMoreTweets} />
@@ -195,10 +197,14 @@ export default () => {
           outline: none;
           font-size: 15px;
           font-weight: 900;
-          margin-top: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 70px;
           margin-left: 10px;
           margin-right: 20px;
         }
+        
         .submitButton:hover {
           background-color: #4390d4;
           cursor: pointer;
