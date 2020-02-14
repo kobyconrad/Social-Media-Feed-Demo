@@ -32,6 +32,7 @@ export default () => {
       }
       prevDoc.cardsArray2.push({ text: state, upvoteCount: 0 });
     });
+    setState("");
   }
 
   function handleChange(event) {
@@ -101,7 +102,7 @@ export default () => {
           <textarea
             placeholder="Give a man a mask, and he will tweet the truth.."
             type="text"
-            name="name"
+            value={state}
             onChange={handleChange}
           ></textarea>
           <input
