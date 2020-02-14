@@ -87,7 +87,7 @@ export default () => {
       <div className="columnContainer">
         <div className="appTitle">
           <h1 className="logo">tw1tt3r BLACK</h1>
-          <button onClick={deleteAllTweets}>Delete Tweets</button>
+          {/* <button onClick={deleteAllTweets}>Delete Tweets</button> */}
         </div>
         <div className="inputContainer">
           <textarea
