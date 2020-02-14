@@ -14,6 +14,10 @@ function LoadMore(props) {
           border-bottom: 1px solid #8c8c8c;
           background-color: #212625;
           color: #f4f4f4;
+          cursor: pointer;
+        }
+        .loadContainer:hover {
+          background-color: #1a1818;
         }
       `}</style>
     </div>

@@ -23,6 +23,8 @@ export default () => {
   );
   const [state, setState] = useState("");
   const [feed, setFeed] = useState("new");
+  const [feedSelectColorTop, setFeedSelectColorTop] = useState("");
+  const [feedSelectColorNew, setFeedSelectColorNew] = useState("#1a1818");
   const [loadTweets, setLoadTweets] = useState(
     (sharedState.cardsArray2 || []).length - 10
   );
@@ -48,10 +50,14 @@ export default () => {
 
   function onTopClick() {
     setFeed("top");
+    setFeedSelectColorTop("#1a1818");
+    setFeedSelectColorNew("");
   }
 
   function onNewClick() {
     setFeed("new");
+    setFeedSelectColorTop("");
+    setFeedSelectColorNew("#1a1818");
   }
 
   function handleChange(event) {
@@ -125,7 +131,7 @@ export default () => {
             src={"https://i.imgur.com/ZLEVCQ3.png"}
           />
           <h1 className="logo">tw1tt3r BLACK</h1>
-          <button onClick={deleteAllTweets}>Delete Tweets</button>
+          {/* <button onClick={deleteAllTweets}>Delete Tweets</button> */}
         </div>
         <div className="inputContainer">
           <textarea
@@ -143,7 +149,12 @@ export default () => {
             <p className="tweetText">Tweet</p>
           </div>
         </div>
-        <FeedSelector onTopClick={onTopClick} onNewClick={onNewClick} />
+        <FeedSelector
+          onTopClick={onTopClick}
+          onNewClick={onNewClick}
+          newBackgroundColor={feedSelectColorNew}
+          topBackgroundColor={feedSelectColorTop}
+        />
         <div className="feedContainer">{slicedTweets}</div>
         <LoadMore onClick={loadMoreTweets} />
       </div>
