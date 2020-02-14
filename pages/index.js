@@ -100,7 +100,7 @@ export default () => {
             src={"https://i.imgur.com/ZLEVCQ3.png"}
           />
           <h1 className="logo">tw1tt3r BLACK</h1>
-          {/* <button onClick={deleteAllTweets}>Delete Tweets</button> */}
+          <button onClick={deleteAllTweets}>Delete Tweets</button>
         </div>
         <div className="inputContainer">
           <textarea
