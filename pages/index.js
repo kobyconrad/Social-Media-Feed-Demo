@@ -206,6 +206,12 @@ export default () => {
           }
         }
 
+        @media screen and (min-width: 825px) {
+          .rightBar {
+            margin-right: -100px;
+          }
+        }
+
         @media screen and (max-width: 651px) {
           .rightBar{
             display: none;
