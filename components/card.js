@@ -10,6 +10,7 @@ function Tweet(props) {
       <div className="cardLeftBar">
         <ArrowUp
           className="voteArrows"
+          cursor="pointer"
           color={up}
           onClick={props.onClick}
           size={25}
@@ -22,6 +23,7 @@ function Tweet(props) {
         />
         <div className="upvoteCount">{props.upvoteCount}</div>
         <ArrowDown
+          cursor="pointer"
           onClick={props.onClickDown}
           size={25}
           color={down}
@@ -47,7 +49,7 @@ function Tweet(props) {
           padding-top: 15px;
           padding-bottom: 15px;
           border-bottom: 1px solid #8c8c8c;
-          cursor: pointer;
+          cursor: selector;
           user-select: none;
         }
         .cardContainer:hover {
