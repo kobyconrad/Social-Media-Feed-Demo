@@ -158,6 +158,16 @@ export default () => {
         <div className="feedContainer">{slicedTweets}</div>
         <LoadMore onClick={loadMoreTweets} />
       </div>
+      <div className="rightBar">
+        <div className="sfText">Made with ♡ in sf.</div>
+        <div className="sponsoredText">
+          Powered by{" "}
+          <a className="rsLink" href="https://roomservice.dev" color="white">
+            Room Service
+          </a>
+          .
+        </div>
+      </div>
 
       <style jsx>{`
         @media screen and (max-width: 500px) {
@@ -175,6 +185,29 @@ export default () => {
         }
         @media screen and (min-width: 501px) {
           .siteLogoMobile {
+            display: none;
+          }
+        }
+        @media screen and (min-width: 650px) {
+          .rightBar{
+            margin: 15px;
+            color: white;
+            font-size: 14px;
+          }
+          .sponsoredText {
+            margin-top: 15px;
+            font-size: 14px;
+          }
+          .rsLink:visited {
+            color: #f4f4f4;
+          }
+          .rsLink {
+            color: #f4f4f4;
+          }
+        }
+
+        @media screen and (max-width: 651px) {
+          .rightBar{
             display: none;
           }
         }
