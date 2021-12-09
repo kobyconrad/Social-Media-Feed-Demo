@@ -11,7 +11,7 @@
     "@roomservice/browser": "latest",
     "@roomservice/node": "latest",
     "@roomservice/react": "latest",
-    "next": "9.2.0",
+    "next": "11.1.3",
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-feather": "^2.0.3"
